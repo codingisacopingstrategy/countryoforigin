@@ -1,0 +1,28 @@
+// ****************************************************************
+//
+// Logic 3: room 3 test
+// 
+// ****************************************************************
+#include "defines.txt"
+if (new_room) {
+  load.pic(room_no);
+  draw.pic(room_no);
+  discard.pic(room_no);
+  //ADD ADDITIONAL INITIALIZATION CODE HERE
+  draw(ego);
+  show.pic();
+  print("Oh my god!");
+}
+if (ego_edge_code == left_edge){
+  //ADD ADDITIONAL left EXIT CODE HERE
+  new.room(2);
+}
+if (input_recieved && unknown_word_no == 0 && !input_parsed) {
+  if (said("look")){
+    print("Why watcha");
+  }
+}
+
+return();
+
+

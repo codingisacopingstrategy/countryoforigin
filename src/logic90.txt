@@ -1,0 +1,278 @@
+// ****************************************************************************
+//
+// Logic 90: Game-specific functions
+//
+// You should use this logic to perform any game specific functions, such as
+// counting down timers, etc and processing player input related to the game
+// (such as examining/using inventory items) and any other things that are
+// required in several rooms that you don't want to duplicate in each room.
+//
+// This logic is called from logic 0, on every cycle.
+// If you like, you could only make it called only when disable_game_functions
+// is not set.
+//
+// Sierra did not use a separate logic for all this - they just did it all
+// from logic 0. I find it is neater this way, as you can keep your game
+// specific processing separate from other system-related things (although
+// these may require some modification for your game). Also, this makes logic 0
+// easier to manage.
+//
+// ****************************************************************************
+
+#include "defines.txt"
+
+
+
+// put all non-input-reponse game functions here
+
+if (input_recieved &&
+    unknown_word_no == 0 &&
+    !input_parsed) {
+
+// put various input responses here
+//  
+
+  if (said("look", "ocean")) {
+    print("Although you can smell it, and you can hear the cries of the seagulls, you can't actually see the sea from where you are now. Maybe you should try and find it.");
+ }
+
+  if (said("look", "street")) {
+    print("You gaze at the ground below your own feet for a while. It doesn't seem to notice.");
+ }
+
+  if (said("talk")) {
+    print("Please be more specific. Talk to whom?");
+ }
+
+
+  if (said("shift","paradigm")) {
+    print("Please be more specific. Shift to what paradigm? Please input again.");
+ }
+
+if((said("transcend","love") || said("transcend","death") || said("transcend","art") || said("transcend","life"))){
+if(has(i7)){
+print("You are either unwilling or incapable of transcending that. Trie to transcend something else.");
+}
+}
+
+  if ((said("transcend","time") || said("transcend","space"))) {
+if(has(i7)){ 
+if(paradigm != 2){
+print("You transcend time for a short while. It is boring. Maybe you need to start of from a different paradigm"); 
+}
+if(paradigm == 2){
+load.sound(0);
+sound(0,f66);
+print("Whirring off in your poststructural flux you cunningly manage to transcend this time and space...");
+get(i2);
+print("You acquire the classicist paradigm!");
+print("You now desire a life and art which have a graceful and noble beauty, which can be attained by adhering to universal standards of unity. You regard 'truth' as both an intrinsic and a desirable property of what you should, do, make or think");
+progress=4;
+score=185;
+print("You've won!");
+print("thank you for playing Country of Origin I");
+new.room(1);
+}
+}
+}
+
+//feel want think
+if (said("feel")){
+get.string(s66,"Feel what?",22,1,50);
+prevent.input();
+cancel.line();   
+load.sound(6);
+sound(6,f67);
+    feel_loop:
+    if (!isset(f67)) {
+    goto(feel_loop);
+    } 
+accept.input();
+print("You succeeded in feeling %s66!");
+reset(input_recieved);
+reset(input_parsed);
+}
+
+if (said("want")){
+get.string(s66,"Desire what?",22,1,50);
+prevent.input();
+cancel.line();   
+load.sound(6);
+sound(6,f67);
+    want_loop:
+    if (!isset(f67)) {
+    goto(want_loop);
+    } 
+accept.input();
+print("You succeeded in wanting %s66!");
+reset(input_recieved);
+reset(input_parsed);
+}
+  
+if (said("think")){
+get.string(s66,"Think what?",22,1,50);
+prevent.input();
+cancel.line();   
+load.sound(6);
+sound(6,f67);
+    think_loop:
+    if (!isset(f67)) {
+    goto(think_loop);
+    } 
+accept.input();
+print("You succeeded in thinking %s66!");
+reset(input_recieved);
+reset(input_parsed);
+}
+
+//paradigmashiftcode:
+
+if ((said("shift","paradigm","classicist") || said("shift","classicist","paradigm"))) {
+if (paradigm!=0){ 
+if (has(i2)) {
+load.sound(5);
+sound(5,f67);
+shake.screen(1);
+classi_loop:
+if (!isset(f67)) {
+goto(classi_loop);
+}
+paradigm=0;
+print("You have succesfully shifted to the classicist paradigm!");
+print("You now desire a life and art which have a graceful and noble beauty, which can be attained by adhering to universal standards of unity. You regard 'truth' as both an intrinsic and a desirable property of what you should, do, make or think."); 
+
+}
+else {
+print("Unfortunately, you are not yet in possesion of the classicist paradigm");
+}
+}
+else {
+print("You are already in the classicist paradigm. Shifting to it would be a delusion.");
+}
+}
+
+
+if ((said("shift","paradigm","marxist") || said("shift","marxist","paradigm"))) {
+if (paradigm!=1){ 
+if (has(i3)) {
+load.sound(5);
+sound(5,f67);
+shake.screen(1);
+marx_loop:
+if (!isset(f67)) {
+goto(marx_loop);
+}
+paradigm=1;
+print("You have succesfully shifted to the marxist paradigm!");
+print("You now stress the historical necessity of whatever. You understand teleological thinking. You can choose to see either yourself or a social class or an intellectual concept as part of a dialectic which will lead from thesis to antithesis to synthesis. "); 
+}
+else {
+print("Unfortunately, you are not yet in possesion of the marxist paradigm");
+}
+}
+else {
+print("You are already in the marxist paradigm. Shifting to it would be a delusion.");
+}
+}
+
+if ((said("shift","paradigm","poststructuralist") || said("shift","poststructuralist","paradigm"))) {
+if (paradigm!=2){ 
+if (has(i4)) {
+load.sound(5);
+sound(5,f67);
+shake.screen(1);
+post_loop:
+if (!isset(f67)) {
+goto(post_loop);
+}
+paradigm=2;
+print("You have succesfully shifted to the poststructuralist paradigm!");
+print("You now strongly oppose logocentric thinking for you are witnessing the end of the human subject - when everything is in flux and reality which is meaning which is language which is desire which is power is structured rhizomatically, disseminating like the pleat, the curve, the twisting surface of science and mathematics.");
+print("Cinema is sensation conditioned by cinema's plastic mass of visual material that puts into operation the open whole as both incessant flux and instantaneous disjunction. Writing is the becoming-multiple that deterritorializes a major language: it makes philosophy happen by giving the event a body, a life, a universe. "); 
+}
+else {
+print("Unfortunately, you are not yet in possesion of the poststructuralist paradigm");
+}
+}
+else {
+print("You are already in the poststructuralist paradigm. Shifting to it would be a delusion.");
+}
+}
+
+if ((said("shift","paradigm","pragmaticist") || said("shift","pragmaticist","paradigm"))) {
+if (paradigm!=3){ 
+if (has(i5)) {
+load.sound(5);
+sound(5,f67);
+shake.screen(1);
+pragma_loop:
+if (!isset(f67)) {
+goto(pragma_loop);
+}
+paradigm=3;
+print("You have succesfully shifted to the pragmaticist paradigm!");
+print("You now regard 'truth' as a recomendation as opposed to a property. You think nihilism does not imply cynicism. You strongly oppose essentialism and you like to stress the spatiotemporal quality of whatever. You are opposed to teleological thinking. "); 
+}
+else {
+print("Unfortunately, you are not yet in possesion of the pragmaticist paradigm");
+}
+}
+else {
+print("You are already in the pragmaticist paradigm. Shifting to it would be a delusion.");
+}
+}
+
+if ((said("shift","paradigm","romanticist") || said("shift","romanticist","paradigm"))) {
+if (paradigm!=4){ 
+if (has(i6)) {
+load.sound(5);
+sound(5,f67);
+shake.screen(1);
+roman_loop:
+if (!isset(f67)) {
+goto(roman_loop);
+}
+paradigm=4;
+print("You have succesfully shifted to the romanticist paradigm!");
+print("You regard 'true', 'authentic', 'honest' and 'individual' as both intrinsic and desirable properties of what you should, do, make or think. You long to express your individuality. Second to that you desire that which you can not have; therefore you suffer."); 
+
+}
+else {
+print("Unfortunately, you are not yet in possesion of the romanticist paradigm");
+}
+}
+else {
+print("You are already in the romanticist paradigm. Shifting to it would be a delusion.");
+}
+}
+
+
+  if ((said("look", "anyword") ||
+       said("look", "anyword", "anyword"))) {
+    print("What? Where?");
+  }
+  
+  if ((said("get", "anyword") ||
+       said("get", "anyword", "anyword"))) {
+    print("You can't get that here!");
+  }
+  
+  if ((said("use", "anyword") ||
+       said("use", "anyword", "anyword"))) {
+    print("What do you want me to do with it?");
+  }
+}
+
+return();
+
+
+
+
+
+
+
+
+
+
+
+

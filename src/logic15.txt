@@ -1,0 +1,87 @@
+// ****************************************************************
+//
+// Logic 15: DCRhal
+// 
+// ****************************************************************
+#include "defines.txt"
+if (new_room) {
+  load.pic(room_no);
+  draw.pic(room_no);
+  discard.pic(room_no);
+  //ADD ADDITIONAL INITIALIZATION CODE HERE
+  if (prev_room_no == 16){
+    position(ego, 79, 167);
+  }
+  animate.obj(o2);
+  load.view(3);
+  set.view(o2,3);
+  position(o2,51,94);
+  set.loop(o2,1);
+  set.cel(o2,0);
+  draw(o2);
+  stop.cycling(o2);  
+draw(ego);
+  show.pic();
+}
+if (ego_touching_signal_line){
+  print("Darn! The elevator appears to broken.");
+  ego_dir = 5;
+}
+if (ego_edge_code == bottom_edge){
+  //ADD ADDITIONAL bottom EXIT CODE HERE
+  new.room(16);
+}
+if (input_recieved && unknown_word_no == 0 && !input_parsed) {
+  if (said("look")){
+    print("You are in the main hall of the studiocomplex where your own studio is located. You see your friend Roland is also present.");
+  }
+ if (said("look","studio")){
+    print("Your studio is located upstairs. You will have to take the elevator in the west-wing of the hall.");
+  }
+ if (said("look","elevator")){
+ print("Darn! The elevator appears to broken.");
+ }
+  if (said("look","basten")){
+    print("Roland is your friend, your confrere and your conscience. During the game he will remind you of your romanticist longings for authenticity and honesty.");
+  }
+  //basten
+
+  if (said("talk","basten")){
+ print("Please be more specific. You can  talk about love, death, art, life, space and time.");
+}
+
+if (said("talk","love","basten")){ 
+start.cycling(o2);
+ print("2007 is a great year for talking love with Roland. You want to do it again.");
+}
+  if (said("talk","death","basten")){
+start.cycling(o2);
+ print("Roland finds your concept of youth and your fear of death somewhat silly and amusing.");
+}
+  if (said("talk","art","basten")){
+start.cycling(o2);
+ print("Roland makes sure to remind you to not cut any corners.");
+}
+  if (said("talk","life","basten")){
+start.cycling(o2);
+ print("There is both a seriousness and a sense of the tragic in your weltanschauung that are not shared by Roland. He consistently challenges your assesments about many aspects of life: in that way he functions as a conscience of sorts.");
+}
+  if ((said("talk","space","basten") || said("talk","love","basten"))){
+start.cycling(o2); 
+print("Roland says: What about transcendence? If you just manage to acquire the classicist paradigm you will be able to see stuff jenseits of space and time! I think that is the proper way to finish Country of Origin I...");
+}
+
+
+}
+
+return();
+
+
+
+
+
+
+
+
+
+

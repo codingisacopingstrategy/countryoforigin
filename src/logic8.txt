@@ -1,0 +1,48 @@
+// ****************************************************************
+//
+// Logic 8: Grotemarktstraat
+// 
+// ****************************************************************
+#include "defines.txt"
+if (new_room) {
+  load.pic(room_no);
+  draw.pic(room_no);
+  discard.pic(room_no);
+  //ADD ADDITIONAL INITIALIZATION CODE HERE
+  draw(ego);
+  show.pic();
+}
+if (ego_edge_code == left_edge){
+  //ADD ADDITIONAL left EXIT CODE HERE
+  new.room(7);
+}
+if (ego_touching_signal_line){
+   print("Although there is neither a strike nor a festivity you know of the door appears to be locked.");
+  ego_dir = 5;
+}
+if (ego_edge_code == right_edge){
+  //ADD ADDITIONAL right EXIT CODE HERE
+  print("You cannot go in the direction of the trainstation. In Country of Origin II you will be able to leave this town.");
+  ego_dir = 0;
+}
+if (input_recieved && unknown_word_no == 0 && !input_parsed) {
+  if ((said("look") || said("look","shops"))){
+    print("You are in Grandmarket street. Your Albert Heijn supermarket is located here, as is the HEMA-warehouse. The city's trainstation is located further east.");
+  }
+if (said("look","warehouse")){
+ print("It is the warehouse that brought modernism to the masses.");
+}
+if (said("look","supermarket")){
+ print("It is the supermarket that brought rucola to the masses.");
+}
+    if ((said("look","door") || said("open","door"))){
+   print("Although there is neither a strike nor a festivity you know of the door appears to be locked.");
+}
+}
+
+return();
+
+
+
+
+

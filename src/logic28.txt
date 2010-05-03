@@ -1,0 +1,32 @@
+// ****************************************************************
+//
+// Logic 28: Zee rechts
+// 
+// ****************************************************************
+#include "defines.txt"
+if (new_room) {
+  load.pic(room_no);
+  draw.pic(room_no);
+  discard.pic(room_no);
+  //ADD ADDITIONAL INITIALIZATION CODE HERE
+  draw(ego);
+  show.pic();
+}
+if (ego_edge_code == left_edge){
+  //ADD ADDITIONAL left EXIT CODE HERE
+  new.room(26);
+}
+if (ego_edge_code == bottom_edge){
+  //ADD ADDITIONAL bottom EXIT CODE HERE
+  new.room(18);
+}
+if (input_recieved && unknown_word_no == 0 && !input_parsed) {
+  if (said("look")){
+    print("Here you are, by the sea.");
+  }
+}
+
+return();
+
+
+

@@ -1,0 +1,41 @@
+// ****************************************************************
+//
+// Logic 21: 2e schuystraat
+// 
+// ****************************************************************
+#include "defines.txt"
+if (new_room) {
+  load.pic(room_no);
+  draw.pic(room_no);
+  discard.pic(room_no);
+  //ADD ADDITIONAL INITIALIZATION CODE HERE
+  if (prev_room_no == 22){
+ego_dir = 5;    
+position(ego, 66, 124);
+  }
+  draw(ego);
+  show.pic();
+}
+if (ego_touching_signal_line){
+new.room(22);
+}
+if (ego_edge_code == bottom_edge){
+  //ADD ADDITIONAL bottom EXIT CODE HERE
+  new.room(16);
+}
+if (input_recieved && unknown_word_no == 0 && !input_parsed) {
+  if (said("look")){
+    print("You are uptown, in the Von Vesselstreet. You can smell the sea, which is to your north. Your friends Bastian, Francis and Josie live in the house at nr 49.");
+  }
+  if (said("look","door")){
+    print("The door is wide open.");
+}
+  if (said("look","buildings")){
+    print("These houses look so very nice. They are late 19th century brick houses, three stories high.");
+}
+}
+
+return();
+
+
+

@@ -1,0 +1,35 @@
+// ****************************************************************
+//
+// Logic 17: Grote Kerk
+// 
+// ****************************************************************
+#include "defines.txt"
+if (new_room) {
+  load.pic(room_no);
+  draw.pic(room_no);
+  discard.pic(room_no);
+  //ADD ADDITIONAL INITIALIZATION CODE HERE
+  draw(ego);
+  show.pic();
+}
+if (ego_edge_code == left_edge){
+  //ADD ADDITIONAL left EXIT CODE HERE
+  new.room(16);
+}
+if (ego_edge_code == right_edge){
+  //ADD ADDITIONAL right EXIT CODE HERE
+  new.room(18);
+}
+if (ego_edge_code == bottom_edge){
+  //ADD ADDITIONAL bottom EXIT CODE HERE
+  new.room(12);
+}
+if (input_recieved && unknown_word_no == 0 && !input_parsed) {
+  if (said("look")){
+    print("You are near the Great Church. This church is mainly used for heathen events. The building also houses a club and a bar. The so-called Zoreaster bar serves the bast carrot cake in town.");
+  }
+}
+
+return();
+
+

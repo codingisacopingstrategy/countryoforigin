@@ -1,0 +1,325 @@
+// ****************************************************************
+//
+// Logic 22: 2e Schuytsoos
+// 
+// ****************************************************************
+#include "defines.txt"
+if (new_room) {
+  load.pic(room_no);
+  draw.pic(room_no);
+  discard.pic(room_no);
+  //ADD ADDITIONAL INITIALIZATION CODE HERE
+    if (prev_room_no == 21){
+    position(ego, 110, 99);
+ego_dir = 7;
+ego_dir = 0;
+  }
+  draw(ego);
+  show.pic();
+  //teken barend
+  animate.obj(o2);
+  load.view(2);
+  set.view(o2,2);
+  position(o2,51,94);
+  set.loop(o2,1);
+  set.cel(o2,0);
+  draw(o2);
+  stop.cycling(o2);
+  // teken folgert
+   animate.obj(o3);
+  load.view(4);
+  set.view(o3,4);
+  position(o3,91,130);
+  set.loop(o3,1);
+  set.cel(o3,0);
+  draw(o3);
+  stop.cycling(o3);
+// teken josie
+  animate.obj(o4);
+  load.view(5);
+  set.view(o4,5);
+  position(o4,63,130);
+  set.loop(o4,1);
+  set.cel(o4,0);
+  draw(o4);
+  stop.cycling(o4);
+}
+if (ego_touching_signal_line){
+new.room(21);
+}
+if (input_recieved && unknown_word_no == 0 && !input_parsed) {
+  if (said("look")){
+    print("This is the apartment shared by Francis B. Creekmanor, Bastian F. Notchdorf and Josie J. Tapburrough. Your friends and strikingly handsome young academics.");
+  }
+ if (said("look","couch")){
+ print("This is a sofa which in spite of its sleek Scandinavian design also looks quite comfortable.");
+}
+ if (said("sit","couch")){
+ print("You have no time to sit down");
+}
+ if (said("look","books")){
+ print("Quite a lot of them, actually. And the spines have nice colours.");
+}
+ if (said("take","books")){
+ print("The books in your own atelier already find ample opportunity to look at you accusatory, there is no sense in taking these books.");
+}
+ if ((said("kiss","josie") || said("kiss","francis") || said("kiss","bastian"))){
+ print("You can't help but think that that would be a good idea.");
+}
+
+//josie
+ if (said("look","josie")){
+    print("Josie is your friend and a strikingly handsome young academic. You conceptually interact on a wide range of subjects. Having studied art history she is also in possession of some paradigms that are strange to you and might be of use.");
+  }
+  if (said("talk","josie")){
+ print("Please be more specific. You can  talk about love, death, art, life, space and time.");
+}
+
+if (said("talk","love","josie")){
+start.cycling(o4); 
+print("Josie and you cultivate a vanity which is honest, and between the two you very satisfactory.");
+}
+  if (said("talk","death","josie")){
+start.cycling(o4); 
+print("Death is the calculated raggedness that gives you and Josies outfits their seductive appeal.");
+}
+  if (said("talk","art","josie")){
+if ((paradigm==3 || paradigm==0)){  
+start.cycling(o4);
+print("Your chatter about art is somewhat dutiful. Maybe you should try another paradigm.");
+}
+if (paradigm==4 && !isset(f80)){  
+start.cycling(o4);
+print("Though this art-talk began romanticist, you have a strange sensation. Josie seems to possess conceptual strategies that are strange to you. They are probably a result of her academic education....");
+get(i3);
+print("You are now in possesion of the marxist paradigm!");
+set(f80);
+progress=1;
+score=34;
+}
+if (paradigm==4 && isset(f80)){  
+start.cycling(o4);
+print("This is a nice conversation.");
+}
+if (paradigm==1 && !isset(f81)){  
+start.cycling(o4);
+print("Using your newly acquired paradigm you start bending the boundaries of your gestalt even more...");
+get(i4);
+print("You are now in possesion of the poststructuralist paradigm!");
+set(f81);
+progress=2;
+score=76;
+}
+if (paradigm==1 && isset(f81)){  
+start.cycling(o4);
+print("This is a nice conversation.");
+}
+if (paradigm==2){  
+start.cycling(o4);
+print("This is a nice conversation.");
+}
+
+}
+  if (said("talk","life","josie")){
+start.cycling(o4); 
+print("Josie moves about to find her place. You move about to find yours.");
+}
+   if (said("talk","space","josie")){
+start.cycling(o4); 
+print("You both realise this place isnt befitting for the likes of you.");
+}
+  if (said("talk","time","josie")){
+start.cycling(o4); 
+print("Josie likes the future.");
+}
+
+//bastian
+ if (said("look","bastian")){
+    print("Bastian is your friend and a strikingly handsome young academic. He shares your pragmaticist paradigm, your metamothertongue so to speak. When you carry a concept there is a good chance Notchdorf can interact with it.");
+  }
+  if (said("talk","bastian")){
+ print("Please be more specific. You can  talk about love, death, art, life, space and time.");
+}
+
+if (said("talk","love","bastian")){
+if (paradigm!=3 && paradigm!=4){  
+start.cycling(o3);
+print("He says: Yikes! Your paradigm reeks of essentialism...");
+}
+if (paradigm==3){  
+start.cycling(o3);
+print("Bastian knows how to handle a large variety of situations and delights in sharing his expertise.");
+}
+if (paradigm==4){  
+start.cycling(o3);
+print("That which you have never seems as sweet as that which you have not. Bastian strives too keep his unattainable loves unattainable.");
+set(f71);
+}
+}
+  if (said("talk","death","bastian")){
+if (paradigm!=3 && paradigm!=4){  
+start.cycling(o3);
+print("He says: Yikes! Your paradigm reeks of essentialism...");
+}
+if (paradigm==3){  
+start.cycling(o3);
+print("Bastian says you really cant say very much about death, let alone want or fear it. ");
+}
+if (paradigm==4){  
+start.cycling(o3);
+print("Tempus fugit. You and Bastian feel death closing in.");
+set(f72);
+}
+}
+  if (said("talk","art","bastian")){
+if (paradigm!=3 && paradigm!=4){  
+start.cycling(o3);
+print("He says: Yikes! Your paradigm reeks of essentialism...");
+}
+if (paradigm==3){  
+start.cycling(o3);
+print("Bastian and you seem to have reached a consensus about what good art should be: an assertion which is claimed an ridiculed at the same time.");
+}
+if (paradigm==4){  
+start.cycling(o3);
+print("You'd rather not talk, just put those records on again and again.");
+set(f73);
+}
+}
+  if (said("talk","life","bastian")){
+if (paradigm!=3 && paradigm!=4){  
+start.cycling(o3);
+print("He says: Yikes! Your paradigm reeks of essentialism...");
+}
+if (paradigm==3){  
+start.cycling(o3);
+print("Bastian tries to convince you there is no need to know what to think about everything.");
+}
+start.cycling(o3);
+if (paradigm==4){  
+print("Bastian and you reflect on your respective senses of loss and tragedy.");
+set(f74);
+}
+}
+  if (said("talk","space","bastian")){
+if (paradigm!=3 && paradigm!=4){  
+start.cycling(o3);
+print("He says: Yikes! Your paradigm reeks of essentialism...");
+}
+if (paradigm==3){  
+start.cycling(o3);
+print("Bastian wonders what it is it about the sea-side city that makes you not want to live there.");
+}
+if (paradigm==4){  
+start.cycling(o3);
+print("Bastian says it will be better somewhere else.");
+set(f75);
+}
+}
+  if (said("talk","time","bastian")){
+if (paradigm!=3 && paradigm!=4){  
+start.cycling(o3);
+print("He says: Yikes! Your paradigm reeks of essentialism...");
+}
+if (paradigm==3){  
+start.cycling(o3);
+print("You have time, Bastian says.");
+}
+if (paradigm==4){  
+start.cycling(o3);
+print("Bastian and you wonder why the past always seems good and the future seems even better when the now never feels like that.");
+set(f76);
+}
+}
+
+if(f71 && f72 && f73 && f74 && f75 && f76 && !isset(f93)){
+print("You have talked with Bastian on love, death, art, live, space and time. Together you have so thoroughly contemplated the tragedy of humanity that you gain the ability of transcendence.");
+get(i7);
+print("You acquire the ability of transcendence!");
+progress=3;
+score=133;
+set(f93);
+}
+
+//francis
+ if (said("look","francis")){
+    print("Francis is your friend and a strikingly handsome young academic. He shares your pragmaticist paradigm, your metamothertongue so to speak. When you carry a concept there is a good chance Creekmanor can interact with it.");
+  }
+  if (said("talk","francis")){
+ print("Please be more specific. You can  talk about love, death, art, life, space and time.");
+}
+
+if (said("talk","love","francis")){
+if (paradigm!=3){  
+start.cycling(o2);
+print("He says: Yikes! Your paradigm reeks of essentialism...");
+}
+if (paradigm==3){  
+start.cycling(o2);
+print("Francis appears to completely lack fear of commitment.");
+}
+}
+  if (said("talk","death","francis")){
+if (paradigm!=3){  
+start.cycling(o2);
+print("He says: Yikes! Your paradigm reeks of essentialism...");
+}
+if (paradigm==3){  
+start.cycling(o2);
+print("You don't talk about death often. Francis is, however, capable of playing upon his age.");
+}
+}
+  if (said("talk","art","francis")){
+if (paradigm!=3){  
+start.cycling(o2);
+print("He says: Yikes! Your paradigm reeks of essentialism...");
+}
+if (paradigm==3){  
+start.cycling(o2);
+print("Francis has a more baroque approach to art. Also, he by no means strives to create a unity or consistency in his esthetical judgements.");
+}
+}
+  if (said("talk","life","francis")){
+if (paradigm!=3){  
+start.cycling(o2);
+print("He says: Yikes! Your paradigm reeks of essentialism...");
+}
+if (paradigm==3){  
+start.cycling(o2);
+print("Your pragmaticist paradigm enables you to desire metaphysical consolation and at the same time deny metaphysics. But Francis denies even this desire, saying he has no need for metaphysical consolation.");
+}
+}
+  if (said("talk","space","francis")){
+if (paradigm!=3){  
+start.cycling(o2);
+print("He says: Yikes! Your paradigm reeks of essentialism...");
+}
+if (paradigm==3){  
+start.cycling(o2);
+print("Francis seems to have lost his desire to cross the Atlantic.");
+}
+}
+  if (said("talk","time","francis")){
+if (paradigm!=3){  
+start.cycling(o2);
+print("He says: Yikes! Your paradigm reeks of essentialism...");
+}
+if (paradigm==3){  
+start.cycling(o2);
+print("Francis has been known to try and attempt to do far more things than time could be expected to allow. You share this trait and together you reflect upon it.");
+}
+}
+
+}
+
+return();
+
+
+
+
+
+
+
+
+
+

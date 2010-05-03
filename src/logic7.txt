@@ -1,0 +1,54 @@
+// ****************************************************************
+//
+// Logic 7: Boekhorststraat
+// 
+// ****************************************************************
+#include "defines.txt"
+if (new_room) {
+  load.pic(room_no);
+  draw.pic(room_no);
+  discard.pic(room_no);
+  if (prev_room_no == 12){
+    position(ego, 94, 63);
+  }
+  //ADD ADDITIONAL INITIALIZATION CODE HERE
+  draw(ego);
+  show.pic();
+}
+if (ego_edge_code == left_edge){
+  //ADD ADDITIONAL left EXIT CODE HERE
+  new.room(6);
+}
+if (ego_edge_code == right_edge){
+  //ADD ADDITIONAL right EXIT CODE HERE
+  new.room(8);
+}
+if (ego_edge_code == horizon_edge){
+  //ADD ADDITIONAL horizon EXIT CODE HERE
+  new.room(12);
+}
+if (ego_touching_signal_line){
+new.room(12);
+}
+if (input_recieved && unknown_word_no == 0 && !input_parsed) {
+  if (said("look")){
+    print("You are at a T-junction. The Bookhurststreet leads up north towards the Grand Market. Leading west is the Shepherdessstreet in which you live, leading east is the Grand Marketstreet where you're supermarket is located.");
+  }
+  if (said("look","houses")){
+    print("This is the only part of the city where the traditional privately-owned shops survive, although the shop-owners are now mainly Persian and Turkish.");
+  }
+ if(said("look","market")){
+ print("The Grand market square, up north, is the city's hub of social activity.");
+}
+}
+
+return();
+
+
+
+
+
+
+
+
+

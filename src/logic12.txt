@@ -1,0 +1,68 @@
+// ****************************************************************
+//
+// Logic 12: Grote Markt
+// 
+// ****************************************************************
+#include "defines.txt"
+if (new_room) {
+  load.pic(room_no);
+  draw.pic(room_no);
+  discard.pic(room_no);
+  if (prev_room_no == 7){
+    position(ego, 73, 167);
+  }
+  if (prev_room_no == 13){
+    position(ego, 89, 116);
+  }
+  //ADD ADDITIONAL INITIALIZATION CODE HERE
+  draw(ego);
+  show.pic();
+}
+if (ego_edge_code == left_edge){
+  //ADD ADDITIONAL left EXIT CODE HERE
+  new.room(16);
+}
+if (ego_touching_signal_line){
+new.room(13);
+}
+// if (ego_edge_code == right_edge){
+  //ADD ADDITIONAL right EXIT CODE HERE
+//  new.room(13);
+//}
+if (ego_edge_code == bottom_edge){
+  //ADD ADDITIONAL bottom EXIT CODE HERE
+  new.room(7);
+}
+if (input_recieved && unknown_word_no == 0 && !input_parsed) {
+  if ((said("look") || said("look","houses"))){
+    print("This is the Grand Market square, this town's hub of social activity. To your east you see the Black Rider Bar: further up north the Great Church looms.");
+  }
+if(said("look","church")){
+print("The church is mainly used for receptions. It also contains a bar/restaurant and a house club. The bar/restaurant has the nicest carrot cake in town.");
+}
+  if (said("look","market")){
+ print("The fact that the social life in this city is so centralized makes it easy to meet people and hard to avoid them.");
+}
+  if (said("look","bar")){
+ print("It is a bar pretty much like any bar in Western Europe.");
+}
+  if (said("look","bicycle")){
+ print("It is a black bicycle.");
+}
+  if (said("take","bicycle")){
+ print("It is locked. You really should get better at stealing bicycles.");
+}
+}
+
+return();
+
+
+
+
+
+
+
+
+
+
+

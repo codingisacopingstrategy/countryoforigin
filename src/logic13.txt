@@ -1,0 +1,75 @@
+// ****************************************************************
+//
+// Logic 13: Zwarte Ruiter
+// 
+// ****************************************************************
+#include "defines.txt"
+if (new_room) {
+  load.pic(room_no);
+  draw.pic(room_no);
+  discard.pic(room_no);
+  //ADD ADDITIONAL INITIALIZATION CODE HERE
+  if (prev_room_no == 12){
+    position(ego, 40, 100);
+  }
+  animate.obj(o2);
+  load.view(6);
+  set.view(o2,6);
+  position(o2,112,124);
+  set.loop(o2,2);
+  set.cel(o2,0);
+  draw(o2);
+  stop.cycling(o2);
+  draw(ego);
+  show.pic();
+}
+if (ego_touching_signal_line){
+new.room(12);
+}
+
+if (input_recieved && unknown_word_no == 0 && !input_parsed) {
+  if (said("look")){
+    print("This is the Black Rider Bar. You see your brother Riley is present.");
+  }
+  if (said("look","bar")){
+ print("It is a bar pretty much like any bar in Western Europe. It's deserted now, except for your brother Riley.");
+}
+//laurens
+  if (said("look","laurens")){
+    print("Riley is your younger brother. He is the only one of your relatives who is in your vicinity. Look for him to show up in unexpected places. Talk to him and listen carefully for in the game he functions as your oracle, giving clues about what to say, do, think or feel next.");
+  }
+if ((said("talk","laurens") || said("talk","anyword","laurens"))){
+if (progress==0){
+print("Welcome to Country of Origin I! I am Riley and I will give you clues.");
+print("The two most important actions in this game are talking and shifting paradigms.");
+print("You can find more on this in the manual you can buy via ericschrijver.nl... For now it's smart to try and find your friends and see if you can talk to them");
+print("Did you know it might be wise to talk art with josie? she studied art history and her paradigms might be of use.");
+}
+if (progress==1){
+print("If you want to talk more art with Josie you need to use the paradigm you just acquired.");
+}
+//if (progress==2){
+//print("Did you already find Roland? talking to him about the objective of your quest might help you");
+//}
+if (progress==2 && f16){
+print("Great! you already figured out that Bastian, unlike Francis, is also in posession of the romanticist paradigm. Have you talked about everything you can think of with him yet?");
+}
+if (progress==2 && !f16){
+print("Unlike Francis, Bastian is in possession of a romanticist paradigm next to his pragmaticist paradigm. Try talking to him from this worldview.");
+}
+if (progress==3){
+print("You managed to figure out how to get the ability to transcend. Great! Now figure out what to transcend.");
+}
+}
+
+
+}
+
+return();
+
+
+
+
+
+
+

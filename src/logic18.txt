@@ -1,0 +1,31 @@
+// ****************************************************************
+//
+// Logic 18: Hofvijver
+// 
+// ****************************************************************
+#include "defines.txt"
+if (new_room) {
+  load.pic(room_no);
+  draw.pic(room_no);
+  discard.pic(room_no);
+  //ADD ADDITIONAL INITIALIZATION CODE HERE
+  draw(ego);
+  show.pic();
+}
+if (ego_edge_code == left_edge){
+  //ADD ADDITIONAL left EXIT CODE HERE
+  new.room(17);
+}
+if (ego_edge_code == horizon_edge){
+  //ADD ADDITIONAL horizon EXIT CODE HERE
+  new.room(28);
+}
+if (input_recieved && unknown_word_no == 0 && !input_parsed) {
+  if (said("look")){
+    print("You are next to the Royal Pond. From here you can oversee many of the governmental buildings that determine your city's skyline.");
+  }
+}
+
+return();
+
+

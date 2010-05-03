@@ -1,0 +1,45 @@
+// ****************************************************************************
+//
+// Logic 92: Help screen
+//
+// ****************************************************************************
+
+#include "defines.txt"
+
+prevent.input();
+status.line.off();
+text.screen();
+key_pressed = 0;
+reset(input_parsed);
+display(1, 1, "    Country of Origin I");
+
+display(3, 1,"Press an arrow button to walk in a");
+display(4,1,"given direction, press the same");
+display(5,1,"button again to stop moving.");
+
+display(7, 1,"Type in commands in simple English:");
+
+display(9,1,"feel");
+display(10,1,"want");
+display(11,1,"think");
+display(12,1,"look");
+display(13,1,"look [house/chair/canal/ground/");
+display(14,1,"bike/francis/door/etc. etc.].");
+display(15,1,"talk riley");
+display(16,1,"talk [love/death/art/life/ space/");
+display(17,1,"time] [roland/francis/bastian/josie]");
+display(18,1,"shift paradigm [classicist/marxist/");
+display(19,1,"post-structuralist/pragmaticist/");
+display(20,1,"romanticist]");
+
+WaitForKey:
+if (!have.key()) { 
+  goto(WaitForKey);
+}
+
+accept.input();
+status.line.on();
+graphics();
+set(input_parsed);
+return();
+

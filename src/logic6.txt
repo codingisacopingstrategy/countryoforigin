@@ -1,0 +1,75 @@
+// ****************************************************************
+//
+// Logic 6: Herderinnestraat
+// 
+// ****************************************************************
+#include "defines.txt"
+if (new_room) {
+  load.pic(room_no);
+  draw.pic(room_no);
+  discard.pic(room_no);
+  if (prev_room_no == 16){
+    position(ego, 34, 65);
+ }
+  if (prev_room_no == 7){
+    position(ego, 159, 142);
+  }
+  //ADD ADDITIONAL INITIALIZATION CODE HERE
+  if ((prev_room_no == 0 || prev_room_no == 1)){
+    //THIS IS THE FIRST ROOM, ADD ANY ONE-TIME INITIALIZATION HERE
+    position(ego, 120, 140);
+  status.line.on();
+  accept.input();
+  stop.sound();
+ paradigm = 3;
+ progress = 0;
+  }
+  draw(ego);
+  show.pic();
+}
+if (ego_edge_code == right_edge){
+  //ADD ADDITIONAL right EXIT CODE HERE
+  new.room(7);
+}
+// if (ego_edge_code == horizon_edge){
+  //ADD ADDITIONAL horizon EXIT CODE HERE
+//  new.room(16);
+//}
+if (ego_touching_signal_line){
+new.room(16);
+}
+if (input_recieved && unknown_word_no == 0 && !input_parsed) {
+  if (said("look")){
+    print("You are in Shepherdessstreet. This is the street in which you live.");
+  }
+   if (said("look","water")){
+    print("It's one of the few canals left in this city. The sea is better.");
+  }
+     if ((said("look","door") || said("look","houses"))){
+    print("The left door leads to your appartment, the right door leads to the appartment of your friend and confrere Roland B. Stickhouses.");
+  }
+if (said("open","door")){
+    print("You have no desire to open that door. It took you far too long to get out of your bed and out of your house this morning. There is no point in going back inside this quickly.");
+  }
+}
+
+return();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

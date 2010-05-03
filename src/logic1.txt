@@ -1,0 +1,39 @@
+// ****************************************************************************
+//
+// Logic 1: Opening/intro
+//
+// ****************************************************************************
+
+#include "defines.txt"
+
+if (new_room) {
+  load.sound(0);
+//  sound(0,f66);
+  load.pic(room_no);
+  draw.pic(room_no);
+  discard.pic(room_no);
+  set.horizon(50);
+  status.line.off();
+  prevent.input();
+  program.control();
+  show.pic();
+  display(23,1,"    Eric Schrijver / ONOMATOPEE");
+}
+
+if (have.key()) {
+  set(menu_enabled);
+  clear.lines(22, 24, 0);
+  stop.motion(ego);
+  reset(disable_game_functions);
+  print("When you, the player, take control of Country of Origin I, it is a bright sunny morning in the early spring of 2007. Outside you can hear the cries of seagulls.");
+  print("You live in a city next to the sea which is also the residence of the country's government: just this week a member of parliament proposed to exclude people with double nationalities from public positions. Like in any Western European nation, xenophobia and provincialism have been rampant in the past few years.");
+   print("Frankly, you don't notice this very much in your day-to-day life. Your country is still extremely rich. You and your friends are in a position to spend their time pursuing careers in contemporary art or linguistics, and to drink coffee uptown or in any other Western-European town."); 
+   print("That makes you wonder. How does this very place and this very time affect you and your life? Or, more precisely, what is the inalienable here and now of your seaside city?");
+   print("You don't like talking in ahistorical categories such as 'space' and 'time'. You are more tempted to think Aldo van Eyck was right when he said: 'whatever space and time mean, place and occurence mean more'. But you have the nagging suspicion that wanting to embody your spatiotemporal position, amounts to the same thing as wanting to escape it...");
+   print("Thus you have arrived in the first ever 3d-animated conceptual adventure game. Your quest is to find a satisfactory relation to the categories of time and space. To achieve your goal, you will have to make clever use of thoughts feelings and desires. You'll have to make eloquent conversation and nimbly shift your paradigms.");
+   print("You might be tempted to think your quest is in vain, because you think that questions are more important than answers. But, you are in a computer game. Games have solutions for they consist of puzzles. And even though intrinsic value is no criterion for a puzzle, the assured existence of a solution is! Good luck.");
+ new.room(6);
+}
+
+return();
+
